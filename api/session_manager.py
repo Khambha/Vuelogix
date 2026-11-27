@@ -58,19 +58,29 @@ class SessionManager:
     # ==============================================
 
     def _get_status_snapshot(self):
+        source = self.state["source"]
+
+    
+        if isinstance(source, str):
+            if source.lower().startswith(("rtsp://", "rtsps://")):
+                safe_source = "RTSP Camera"
+            else:
+                safe_source = "Video Source"
+        else:
+            safe_source = "Webcam"
 
         return {
-            "session_id": self.state["session_id"],
-            "status": self.state["status"],
-            "source": self.state["source"],
-            "error": self.state["error"],
-            "counts": dict(self.state["counts"]),
-            "performance": dict(self.state["performance"]),
-            "counting_line": {
-                "point_a": list(self.line_config["point_a"]),
-                "point_b": list(self.line_config["point_b"])
-            }
+        "session_id": self.state["session_id"],
+        "status": self.state["status"],
+        "source": safe_source,
+        "error": self.state["error"],
+        "counts": dict(self.state["counts"]),
+        "performance": dict(self.state["performance"]),
+        "counting_line": {
+            "point_a": list(self.line_config["point_a"]),
+            "point_b": list(self.line_config["point_b"])
         }
+    }
 
     # ==============================================
     # UPDATE COUNTING LINE
