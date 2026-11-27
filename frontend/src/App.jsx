@@ -28,7 +28,7 @@ import {
 
 import "./App.css";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://deeper-marvel-population-york.trycloudflare.com";
 const MAX_UPLOAD_SIZE = 500 * 1024 * 1024;
 
 const ACTIVE_STATUSES = ["starting", "running", "stopping"];
